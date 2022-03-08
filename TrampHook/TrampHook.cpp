@@ -65,14 +65,15 @@ int __stdcall IntereceptCalls(HWND hWnd, LPCSTR lpText, LPCSTR lpCaption, UINT u
 	return 0;
 }
 
-int main()
+int wmain()
 {
 	HMODULE library = LoadLibraryA("user32.dll");
 	
 	originalAdd = GetProcAddress(library, "MessageBoxA");
 	if (!originalAdd)
 	{
-		__asm {
+		__asm
+		{
 			call _return
 		}
 	}
